@@ -17,10 +17,12 @@ namespace MazeSolver.Runner
             Console.WriteLine("Down arrow");
             Console.WriteLine("'r' for reset");
 
-            try{
+            try
+            {
                 mazeRunnerService.Start();
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
 
@@ -28,7 +30,8 @@ namespace MazeSolver.Runner
             do
             {
                 input = Console.ReadKey();
-                switch (input.Key) {
+                switch (input.Key)
+                {
                     case ConsoleKey.R: { mazeRunnerService.Reset(); LogStatePostionAndKey(mazeRunnerService); break; }
                     case ConsoleKey.RightArrow: { mazeRunnerService.MoveEast(); LogStatePostionAndKey(mazeRunnerService); break; }
                     case ConsoleKey.UpArrow: { mazeRunnerService.MoveNorth(); LogStatePostionAndKey(mazeRunnerService); break; }
@@ -38,7 +41,8 @@ namespace MazeSolver.Runner
             } while (input.Key != ConsoleKey.Escape);
         }
 
-        static void LogStatePostionAndKey(MazeRunnerService mazeRunnerService){
+        static void LogStatePostionAndKey(MazeRunnerService mazeRunnerService)
+        {
             var state = mazeRunnerService.GetCurrentState();
             var position = mazeRunnerService.GetCurrentPosition();
             var directions = mazeRunnerService.GetPossibleDirections();
