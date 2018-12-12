@@ -5,7 +5,7 @@ using MazeSolver.Domain.Models.Consts;
 
 namespace MazeSolver.Domain.Services
 {
-    public class MazeRunnerService
+    public class MazeRunnerService : IMazeRunnerService
     {
         private MazeRunnerActor MazeRunner { get; set; }
         private IMazeService MazeService;

@@ -4,6 +4,7 @@ using RestSharp;
 
 using MazeSolver.Domain.Infrastructure;
 using MazeSolver.Domain.Models;
+using MazeSolver.Runner.Models;
 
 namespace MazeSolver.Runner.Services
 {
@@ -32,7 +33,7 @@ namespace MazeSolver.Runner.Services
             var request = new RestRequest(Method.GET);
             request.Resource = "position";
 
-            return this.Execute<Position>(request);
+            return this.Execute<CurrentPosition>(request).Position;
         }
 
         public void Move(string direction)
