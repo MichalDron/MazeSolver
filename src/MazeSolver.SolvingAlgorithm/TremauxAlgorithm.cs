@@ -13,6 +13,7 @@ namespace MazeSolver.SolvingAlgorithm
         private const int NonVisited = 0;
         private const int VisitedOnce = 1;
         private const int VisitedTwice = 2;
+        private const int MovingSpeed = 1;
         private IMazeRunnerService MazeRunnerService { get; set; }
         private Dictionary<Position, int> VisitedPositions = new Dictionary<Position, int>();
 
@@ -36,6 +37,37 @@ namespace MazeSolver.SolvingAlgorithm
                 this.Move(chosenDirection);
 
                 previousDirection = chosenDirection;
+            }
+        }
+
+        private DirectionsEnum ChooseMovingDirection(Position currentPosition, Dictionary<DirectionsEnum, int> possibleDirections, DirectionsEnum previousDirection)
+        {
+            if (!possibleDirections.Any())
+            {
+                throw new Exception("Maze does not have any solution!");
+            }
+
+            if (possibleDirections.Values.Any(v => v == NonVisited))
+            {
+                return possibleDirections.First(kv => kv.Value == NonVisited).Key;
+            }
+
+            if (this.IsFirstTimeVisited(currentPosition) || !this.CanMoveInDirection(possibleDirections, previousDirection))
+            {
+                if (this.EveryDirectionVisitedOnce(possibleDirections))
+                {
+                    var oppositeDirection = this.GetOppositeDirection(previousDirection);
+                    if (this.CanMoveInDirection(possibleDirections, oppositeDirection))
+                    {
+                        return oppositeDirection;
+                    }
+                }
+
+                return this.GetDirectionWithLowestVisitations(possibleDirections);
+            }
+            else
+            {
+                return previousDirection;
             }
         }
 
@@ -159,37 +191,6 @@ namespace MazeSolver.SolvingAlgorithm
             return possibleDirections;
         }
 
-        private DirectionsEnum ChooseMovingDirection(Position currentPosition, Dictionary<DirectionsEnum, int> possibleDirections, DirectionsEnum previousDirection)
-        {
-            if (!possibleDirections.Any())
-            {
-                throw new Exception("Maze does not have any solution!");
-            }
-
-            if (possibleDirections.Values.Any(v => v == NonVisited))
-            {
-                return possibleDirections.First(kv => kv.Value == NonVisited).Key;
-            }
-
-            if (this.IsFirstTimeVisited(currentPosition) || !this.CanMoveInDirection(possibleDirections, previousDirection))
-            {
-                if (this.EveryDirectionVisitedOnce(possibleDirections))
-                {
-                    var oppositeDirection = this.GetOppositeDirection(previousDirection);
-                    if (this.CanMoveInDirection(possibleDirections, oppositeDirection))
-                    {
-                        return oppositeDirection;
-                    }
-                }
-
-                return this.GetDirectionWithLowestVisitations(possibleDirections);
-            }
-            else
-            {
-                return previousDirection;
-            }
-        }
-
         private DirectionsEnum GetDirectionWithLowestVisitations(Dictionary<DirectionsEnum, int> possibleDirections) => possibleDirections.Keys.OrderBy(d => (int)d).First();
 
         private bool EveryDirectionVisitedOnce(Dictionary<DirectionsEnum, int> possibleDirections) => possibleDirections.Values.Count(v => v == VisitedOnce) == possibleDirections.Count() && possibleDirections.Count() > 1;
@@ -218,19 +219,19 @@ namespace MazeSolver.SolvingAlgorithm
             switch (direction)
             {
                 case DirectionsEnum.East:
-                    newPosition.X = currentPosition.X + 1;
+                    newPosition.X = currentPosition.X + MovingSpeed;
                     newPosition.Y = currentPosition.Y;
                     break;
                 case DirectionsEnum.North:
                     newPosition.X = currentPosition.X;
-                    newPosition.Y = currentPosition.Y - 1;
+                    newPosition.Y = currentPosition.Y - MovingSpeed;
                     break;
                 case DirectionsEnum.South:
                     newPosition.X = currentPosition.X;
-                    newPosition.Y = currentPosition.Y + 1;
+                    newPosition.Y = currentPosition.Y + MovingSpeed;
                     break;
                 case DirectionsEnum.West:
-                    newPosition.X = currentPosition.X - 1;
+                    newPosition.X = currentPosition.X - MovingSpeed;
                     newPosition.Y = currentPosition.Y;
                     break;
             }
