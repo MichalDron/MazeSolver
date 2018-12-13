@@ -41,7 +41,7 @@ namespace MazeSolver.SolvingAlgorithm
 
         private void MarkDeadEnd(Position position)
         {
-            if (!this.VisitedPositions.ContainsKey(position))
+            if (this.IsFirstTimeVisited(position))
             {
                 this.VisitedPositions.Add(position, VisitedTwice);
             }
@@ -60,17 +60,7 @@ namespace MazeSolver.SolvingAlgorithm
         {
             if (possibleDirections.Count() > 2)
             {
-                if (this.IsDeadJunction(position, directionsNotVisitedTwice))
-                {
-                    this.MarkDeadEnd(position);
-                }
-                else
-                {
-                    if (!this.VisitedPositions.ContainsKey(position))
-                    {
-                        this.VisitedPositions.Add(position, VisitedOnce);
-                    }
-                }
+                this.MarkJunction(position, directionsNotVisitedTwice);
             }
             else if (possibleDirections.Count() < 2)
             {
@@ -78,7 +68,7 @@ namespace MazeSolver.SolvingAlgorithm
             }
             else
             {
-                if (this.VisitedPositions.ContainsKey(position))
+                if (!this.IsFirstTimeVisited(position))
                 {
                     this.VisitedPositions[position] = VisitedTwice;
                 }
@@ -86,9 +76,22 @@ namespace MazeSolver.SolvingAlgorithm
                 {
                     this.VisitedPositions.Add(position, VisitedOnce);
                 }
-
             }
+        }
 
+        private void MarkJunction(Position position, Dictionary<DirectionsEnum, int> directionsNotVisitedTwice)
+        {
+            if (this.IsDeadJunction(position, directionsNotVisitedTwice))
+            {
+                this.MarkDeadEnd(position);
+            }
+            else
+            {
+                if (!this.VisitedPositions.ContainsKey(position))
+                {
+                    this.VisitedPositions.Add(position, VisitedOnce);
+                }
+            }
         }
 
         private Dictionary<DirectionsEnum, int> GetPossibleDirections(Position currentPosition, List<DirectionsEnum> possibleDirections)
@@ -168,24 +171,32 @@ namespace MazeSolver.SolvingAlgorithm
                 return possibleDirections.First(kv => kv.Value == NonVisited).Key;
             }
 
-            if (!this.VisitedPositions.ContainsKey(currentPosition) || !possibleDirections.ContainsKey(previousDirection))
+            if (this.IsFirstTimeVisited(currentPosition) || !this.CanMoveInDirection(possibleDirections, previousDirection))
             {
-                if (possibleDirections.Values.Count(v => v == VisitedOnce) == possibleDirections.Count() && possibleDirections.Count() > 1)
+                if (this.EveryDirectionVisitedOnce(possibleDirections))
                 {
                     var oppositeDirection = this.GetOppositeDirection(previousDirection);
-                    if (possibleDirections.ContainsKey(oppositeDirection))
+                    if (this.CanMoveInDirection(possibleDirections, oppositeDirection))
                     {
                         return oppositeDirection;
                     }
                 }
 
-                return possibleDirections.Keys.OrderBy(d => (int)d).First();
+                return this.GetDirectionWithLowestVisitations(possibleDirections);
             }
             else
             {
                 return previousDirection;
             }
         }
+
+        private DirectionsEnum GetDirectionWithLowestVisitations(Dictionary<DirectionsEnum, int> possibleDirections) => possibleDirections.Keys.OrderBy(d => (int)d).First();
+
+        private bool EveryDirectionVisitedOnce(Dictionary<DirectionsEnum, int> possibleDirections) => possibleDirections.Values.Count(v => v == VisitedOnce) == possibleDirections.Count() && possibleDirections.Count() > 1;
+
+        private bool CanMoveInDirection(Dictionary<DirectionsEnum, int> possibleDirections, DirectionsEnum previousDirection) => possibleDirections.ContainsKey(previousDirection);
+
+        private bool IsFirstTimeVisited(Position currentPosition) => !this.VisitedPositions.ContainsKey(currentPosition);
 
         private DirectionsEnum GetOppositeDirection(DirectionsEnum direction)
         {
