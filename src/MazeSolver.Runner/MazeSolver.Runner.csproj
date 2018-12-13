@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MazeSolver.Domain\MazeSolver.Domain.csproj" />
+    <ProjectReference Include="..\MazeSolver.SolvingAlgorithm\MazeSolver.SolvingAlgorithm.csproj" />
   </ItemGroup>
 
   <ItemGroup>

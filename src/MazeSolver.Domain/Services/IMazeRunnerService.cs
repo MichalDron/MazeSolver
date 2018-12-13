@@ -16,5 +16,6 @@ namespace MazeSolver.Domain.Services
         void MoveWest();
         void Reset();
         void Start();
+        bool Finished();
     }
 }

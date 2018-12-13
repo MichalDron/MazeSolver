@@ -71,6 +71,10 @@ namespace MazeSolver.Domain.Services
             this.UpdateMazeRunnerActor();
         }
 
+        public bool Finished(){
+            return this.MazeRunner.Finished();
+        }
+
         private void Move(string direction)
         {
             if (!this.MazeRunner.CanMove(direction))

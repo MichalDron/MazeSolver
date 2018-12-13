@@ -2,6 +2,7 @@
 using MazeSolver.Domain.Services;
 using MazeSolver.Domain.Models;
 using MazeSolver.Runner.Services;
+using MazeSolver.SolvingAlgorithm;
 
 namespace MazeSolver.Runner
 {
@@ -10,7 +11,8 @@ namespace MazeSolver.Runner
         static void Main(string[] args)
         {
             IMazeRunnerService mazeRunnerService = new MazeRunnerService(new MazeService());
-            Game game = new Game(mazeRunnerService);
+            IMazeSolvingAlgorithm algorithm = new TremauxAlgorithm(mazeRunnerService);
+            Game game = new Game(mazeRunnerService, algorithm);
 
             game.Start();
         }

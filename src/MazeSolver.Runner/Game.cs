@@ -2,16 +2,19 @@ using System;
 using MazeSolver.Domain.Services;
 using MazeSolver.Domain.Models;
 using MazeSolver.Runner.Services;
+using MazeSolver.SolvingAlgorithm;
 
 namespace MazeSolver.Runner
 {
     public class Game
     {
         private IMazeRunnerService MazeRunnerService { get; set; }
+        private IMazeSolvingAlgorithm MazeSolvingAlgorithm { get; set; }
 
-        public Game(IMazeRunnerService mazeRunnerService)
+        public Game(IMazeRunnerService mazeRunnerService, IMazeSolvingAlgorithm mazeSolvingAlgorithm = null)
         {
             this.MazeRunnerService = mazeRunnerService;
+            this.MazeSolvingAlgorithm = mazeSolvingAlgorithm;
         }
 
         public void Start()
@@ -50,35 +53,28 @@ namespace MazeSolver.Runner
                 switch (input.Key)
                 {
                     case ConsoleKey.R:
-                        {
-                            this.MazeRunnerService.Reset();
-                            LogStatePostionAndKey();
-                            break;
-                        }
+                        this.MazeRunnerService.Reset();
+                        LogStatePostionAndKey();
+                        break;
                     case ConsoleKey.RightArrow:
-                        {
-                            this.MazeRunnerService.MoveEast();
-                            LogStatePostionAndKey();
-                            break;
-                        }
+                        this.MazeRunnerService.MoveEast();
+                        LogStatePostionAndKey();
+                        break;
                     case ConsoleKey.UpArrow:
-                        {
-                            this.MazeRunnerService.MoveNorth();
-                            LogStatePostionAndKey();
-                            break;
-                        }
+                        this.MazeRunnerService.MoveNorth();
+                        LogStatePostionAndKey();
+                        break;
                     case ConsoleKey.DownArrow:
-                        {
-                            this.MazeRunnerService.MoveSouth();
-                            LogStatePostionAndKey();
-                            break;
-                        }
+                        this.MazeRunnerService.MoveSouth();
+                        LogStatePostionAndKey();
+                        break;
                     case ConsoleKey.LeftArrow:
-                        {
-                            this.MazeRunnerService.MoveWest();
-                            LogStatePostionAndKey();
-                            break;
-                        }
+                        this.MazeRunnerService.MoveWest();
+                        LogStatePostionAndKey();
+                        break;
+                    case ConsoleKey.S:
+                        this.MazeSolvingAlgorithm.Solve();
+                        break;
                 }
             }
             catch (System.Exception ex)
@@ -95,6 +91,10 @@ namespace MazeSolver.Runner
             Console.WriteLine("Up arrow");
             Console.WriteLine("Down arrow");
             Console.WriteLine("'r' for reset");
+            if (this.MazeSolvingAlgorithm != null)
+            {
+                Console.WriteLine("'s' for auto solving");
+            }
         }
     }
 }

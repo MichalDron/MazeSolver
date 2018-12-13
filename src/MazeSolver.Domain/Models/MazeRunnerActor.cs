@@ -54,5 +54,10 @@ namespace MazeSolver.Domain.Models
         {
             return this.CurrentState;
         }
+
+        internal bool Finished()
+        {
+            return this.CurrentState.State == State.TargetReached;
+        }
     }
 }
