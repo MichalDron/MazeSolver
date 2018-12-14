@@ -56,7 +56,7 @@ namespace MazeSolver.Domain.Services
             {
                 this.MazeService.Reset();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO log exception ex
                 throw new Exception("Problem occured when moving.");
@@ -86,7 +86,7 @@ namespace MazeSolver.Domain.Services
             {
                 this.MazeService.Move(direction);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO log exception ex
                 throw new Exception("Problem occured when moving.");
@@ -109,7 +109,7 @@ namespace MazeSolver.Domain.Services
                 Position position = this.MazeService.GetPosition();
                 this.MazeRunner.SetPosition(position);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO log exception ex
                 throw new Exception("Cannot set position for maze runner");
@@ -123,7 +123,7 @@ namespace MazeSolver.Domain.Services
                 Directions directions = this.MazeService.GetDirections();
                 this.MazeRunner.SetPossibleDirections(directions);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO log exception ex
                 throw new Exception("Cannot set possible directions for maze runner");
@@ -137,7 +137,7 @@ namespace MazeSolver.Domain.Services
                 CurrentState state = this.MazeService.GetCurrentState();
                 this.MazeRunner.SetState(state);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO log exception ex
                 throw new Exception("Cannot set state for maze runner");
