@@ -29,11 +29,11 @@
     </Grid.ColumnDefinitions>
 
     <Button Grid.Row="0" Grid.Column="0" Content="Start new game" IsEnabled="true" Command="{Binding StartCommand}"/>
-    <Button Grid.Row="0" Grid.Column="4" Content="Run solving algorithm" IsEnabled="{Binding CanMove}" Command="{Binding RunSolvingAlgorithmCommand}"/>
-    <Button Grid.Row="3" Grid.Column="3" Content="Move East" IsEnabled="{Binding PossibleDirections.East}" Command="{Binding MoveEastCommand}"/>
-    <Button Grid.Row="2" Grid.Column="2" Content="Move North" IsEnabled="{Binding PossibleDirections.North}" Command="{Binding MoveNorthCommand}"/>
-    <Button Grid.Row="4" Grid.Column="2" Content="Move South" IsEnabled="{Binding PossibleDirections.South}" Command="{Binding MoveSouthCommand}"/>
-    <Button Grid.Row="3" Grid.Column="1" Content="Move West" IsEnabled="{Binding PossibleDirections.West}" Command="{Binding MoveWestCommand}"/>
+    <Button Grid.Row="0" Grid.Column="4" Content="Run solving algorithm" IsVisible="{Binding CanMove}" Command="{Binding RunSolvingAlgorithmCommand}"/>
+    <Button Grid.Row="3" Grid.Column="3" Content="Move East" IsVisible="{Binding CanMove}" IsEnabled="{Binding PossibleDirections.East}" Command="{Binding MoveEastCommand}"/>
+    <Button Grid.Row="2" Grid.Column="2" Content="Move North" IsVisible="{Binding CanMove}" IsEnabled="{Binding PossibleDirections.North}" Command="{Binding MoveNorthCommand}"/>
+    <Button Grid.Row="4" Grid.Column="2" Content="Move South" IsVisible="{Binding CanMove}" IsEnabled="{Binding PossibleDirections.South}" Command="{Binding MoveSouthCommand}"/>
+    <Button Grid.Row="3" Grid.Column="1" Content="Move West" IsVisible="{Binding CanMove}" IsEnabled="{Binding PossibleDirections.West}" Command="{Binding MoveWestCommand}"/>
     <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding InfoMessage}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
   </Grid>
