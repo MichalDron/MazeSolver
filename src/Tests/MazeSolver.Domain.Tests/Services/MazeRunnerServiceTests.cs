@@ -23,7 +23,7 @@ namespace MazeSolver.Domain.Tests.Services
 
         [Theory]
         [MemberData(nameof(MethodsThrowingExceptionWithoutStartTestData))]
-        public void GivenNotStartedMazeRunnerService_WhenMove_ThenThrowException(Action<IMazeRunnerService> action)
+        public void GivenNotStartedMazeRunnerService_WhenInvokeMethodBeforeStart_ThenThrowException(Action<IMazeRunnerService> action)
         {
             // Arrange
             this._sut = new MazeRunnerService(MazeServiceMock.Object);
