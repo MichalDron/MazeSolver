@@ -4,13 +4,12 @@ using RestSharp;
 
 using MazeSolver.Domain.Infrastructure;
 using MazeSolver.Domain.Models;
-using MazeSolver.Runner.Models;
 
-namespace MazeSolver.Runner.Services
+namespace MazeSolver.GUI.Models
 {
     public class MazeService : IMazeService
     {
-        private const string ServiceUrl = "http://localhost:3000/"; // TODO Move to config
+        private const string ServiceUrl = "http://localhost:3000/"; //TODO Move to config
 
         public CurrentState GetCurrentState()
         {
@@ -66,6 +65,11 @@ namespace MazeSolver.Runner.Services
                 throw new Exception("An exception occured while calling service.");
             }
             return response.Data;
+        }
+
+        private class CurrentPosition
+        {
+            public Position Position { get; set; }
         }
     }
 }

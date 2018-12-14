@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.Runner", "MazeSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.SolvingAlgorithm", "MazeSolver.SolvingAlgorithm\MazeSolver.SolvingAlgorithm.csproj", "{9FBC5170-B1D3-4B32-A232-506885CC2512}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.GUI", "MazeSolver.GUI\MazeSolver.GUI.csproj", "{5A1C752A-7C37-4561-A09F-663AC51EEA5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{9FBC5170-B1D3-4B32-A232-506885CC2512}.Release|x64.Build.0 = Release|Any CPU
 		{9FBC5170-B1D3-4B32-A232-506885CC2512}.Release|x86.ActiveCfg = Release|Any CPU
 		{9FBC5170-B1D3-4B32-A232-506885CC2512}.Release|x86.Build.0 = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x64.Build.0 = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:MazeSolver.GUI.ViewModels;assembly=MazeSolver.GUI"
+        Icon="resm:MazeSolver.GUI.Assets.avalonia-logo.ico"
+        Title="MazeSolver.GUI"
+        SizeToContent="WidthAndHeight">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Grid Width="540" Height="300" >
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="2*" />
+      <ColumnDefinition Width="1*" />
+      <ColumnDefinition Width="1*" />
+      <ColumnDefinition Width="1*" />
+      <ColumnDefinition Width="2*" />
+    </Grid.ColumnDefinitions>
+
+    <Button Grid.Row="0" Grid.Column="0" Content="Start new game" IsEnabled="true" Command="{Binding StartCommand}"/>
+    <Button Grid.Row="0" Grid.Column="4" Content="Run solving algorithm" IsEnabled="{Binding CanMove}" Command="{Binding RunSolvingAlgorithmCommand}"/>
+    <Button Grid.Row="3" Grid.Column="3" Content="Move East" IsEnabled="{Binding PossibleDirections.East}" Command="{Binding MoveEastCommand}"/>
+    <Button Grid.Row="2" Grid.Column="2" Content="Move North" IsEnabled="{Binding PossibleDirections.North}" Command="{Binding MoveNorthCommand}"/>
+    <Button Grid.Row="4" Grid.Column="2" Content="Move South" IsEnabled="{Binding PossibleDirections.South}" Command="{Binding MoveSouthCommand}"/>
+    <Button Grid.Row="3" Grid.Column="1" Content="Move West" IsEnabled="{Binding PossibleDirections.West}" Command="{Binding MoveWestCommand}"/>
+    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding InfoMessage}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+  </Grid>
+
+</Window>
