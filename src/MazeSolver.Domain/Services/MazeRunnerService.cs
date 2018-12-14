@@ -17,16 +17,22 @@ namespace MazeSolver.Domain.Services
 
         public CurrentState GetCurrentState()
         {
+            this.ValidateStarted();
+
             return this.MazeRunner.GetCurrentState();
         }
 
         public Position GetCurrentPosition()
         {
+            this.ValidateStarted();
+
             return this.MazeRunner.GetCurrentPosition();
         }
 
         public Directions GetPossibleDirections()
         {
+            this.ValidateStarted();
+
             return this.MazeRunner.GetPossibleDirections();
         }
 
@@ -59,7 +65,7 @@ namespace MazeSolver.Domain.Services
             catch (Exception)
             {
                 //TODO log exception ex
-                throw new Exception("Problem occured when moving.");
+                throw new Exception(ErrorMessages.ErrorWhileReset);
             }
 
             this.Start();
@@ -71,15 +77,20 @@ namespace MazeSolver.Domain.Services
             this.UpdateMazeRunnerActor();
         }
 
-        public bool Finished(){
+        public bool Finished()
+        {
+            this.ValidateStarted();
+
             return this.MazeRunner.Finished();
         }
 
         private void Move(string direction)
         {
+            this.ValidateStarted();
+
             if (!this.MazeRunner.CanMove(direction))
             {
-                throw new Exception("You can't move this direction.");
+                throw new Exception(ErrorMessages.ForbiddenDirection);
             }
 
             try
@@ -89,7 +100,7 @@ namespace MazeSolver.Domain.Services
             catch (Exception)
             {
                 //TODO log exception ex
-                throw new Exception("Problem occured when moving.");
+                throw new Exception(ErrorMessages.ErrorWhileMoving);
             }
 
             this.UpdateMazeRunnerActor();
@@ -112,7 +123,7 @@ namespace MazeSolver.Domain.Services
             catch (Exception)
             {
                 //TODO log exception ex
-                throw new Exception("Cannot set position for maze runner");
+                throw new Exception(ErrorMessages.CannotSetPosition);
             }
         }
 
@@ -126,7 +137,7 @@ namespace MazeSolver.Domain.Services
             catch (Exception)
             {
                 //TODO log exception ex
-                throw new Exception("Cannot set possible directions for maze runner");
+                throw new Exception(ErrorMessages.CannotSetPossibleDirections);
             }
         }
 
@@ -140,7 +151,15 @@ namespace MazeSolver.Domain.Services
             catch (Exception)
             {
                 //TODO log exception ex
-                throw new Exception("Cannot set state for maze runner");
+                throw new Exception(ErrorMessages.CannotSetState);
+            }
+        }
+
+        private void ValidateStarted()
+        {
+            if (this.MazeRunner == null)
+            {
+                throw new Exception(ErrorMessages.MazeRunnerNotStarted);
             }
         }
     }

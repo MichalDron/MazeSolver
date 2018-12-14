@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.SolvingAlgorithm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.GUI", "MazeSolver.GUI\MazeSolver.GUI.csproj", "{5A1C752A-7C37-4561-A09F-663AC51EEA5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EFB99135-9523-4B39-9304-4C8ED7771C77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver.Domain.Tests", "Tests\MazeSolver.Domain.Tests\MazeSolver.Domain.Tests.csproj", "{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +76,20 @@ Global
 		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x64.Build.0 = Release|Any CPU
 		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x86.ActiveCfg = Release|Any CPU
 		{5A1C752A-7C37-4561-A09F-663AC51EEA5F}.Release|x86.Build.0 = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|x64.Build.0 = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Debug|x86.Build.0 = Debug|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|x64.ActiveCfg = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|x64.Build.0 = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|x86.ActiveCfg = Release|Any CPU
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F52D0A2D-BFE4-497A-ABAA-F9FCC264D638} = {EFB99135-9523-4B39-9304-4C8ED7771C77}
 	EndGlobalSection
 EndGlobal
